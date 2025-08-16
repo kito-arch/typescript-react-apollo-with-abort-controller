@@ -14,18 +14,6 @@ const plugin = async (schema, documents, config, { outputFile }) => {
     plugins: ["typescript"],
   });
 
-  ast.program.body.unshift(
-    t.importDeclaration(
-      [
-        t.importSpecifier(
-          t.identifier("useAbortControllerWrapper"),
-          t.identifier("useAbortControllerWrapper")
-        ),
-      ],
-      t.stringLiteral("typescript-react-apollo-with-abort-controller/hooks")
-    )
-  );
-
   traverse(ast, {
     FunctionDeclaration(path) {
       const { id, params } = path.node;
@@ -57,8 +45,14 @@ const plugin = async (schema, documents, config, { outputFile }) => {
     },
   });
 
+  const abortControllerHookImport =
+    'import { useAbortControllerWrapper } from "typescript-react-apollo-with-abort-controller/hooks"';
+
   const { code } = generate(ast, { retainLines: true });
-  return code;
+  return {
+    prepend: [...originalCode.prepend, abortControllerHookImport],
+    content: code,
+  };
 };
 
 export { plugin };
