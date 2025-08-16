@@ -27,6 +27,26 @@
   },
   "author": "Husnain Mustafa",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kito-arch/typescript-react-apollo-with-abort-controller.git"
+  },
+  "keywords": [
+  "graphql",
+  "codegen",
+  "graphql-codegen",
+  "graphql-code-generator",
+  "apollo",
+  "react",
+  "react-hooks",
+  "typescript",
+  "apollo-client",
+  "abortcontroller",
+  "abort-controller",
+  "request-cancellation",
+  "typescript-react-apollo",
+  "graphql-plugin"
+],
   "dependencies": {
     "@babel/generator": "^7.24.0",
     "@babel/parser": "^7.24.0",
